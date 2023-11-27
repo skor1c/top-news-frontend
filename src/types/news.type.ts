@@ -1,10 +1,10 @@
-export type TopNewsResponse = {
+export type NewsResponse = {
   status: string;
   totalResults: number;
   articles: Article[];
 };
 
-type Article = {
+export type Article = {
   source: Source;
   author?: string;
   title: string;

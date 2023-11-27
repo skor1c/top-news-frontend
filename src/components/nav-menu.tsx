@@ -6,7 +6,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from './ui/navigation-menu';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/cn';
 import { useCountry } from '@/hooks/use-country.hook';
 import { allCountries } from '@/utils/country';
 
@@ -14,7 +14,7 @@ const NavMenu = () => {
   const { countryCode, setCountryCode } = useCountry();
 
   return (
-    <div className="py-2 px-4 border-b border-b-border w-full sticky flex justify-between">
+    <div className="py-2 border-b border-b-border w-full sticky flex justify-between md:px-8 md:py-5">
       <NavigationMenu>
         <NavigationMenuList>
           {links.map((link) => (
@@ -22,7 +22,11 @@ const NavMenu = () => {
               <NavLink
                 to={link.url}
                 className={({ isActive }) =>
-                  cn(navigationMenuTriggerStyle(), 'text-xl', isActive ? 'bg-accent text-accent-foreground' : '')
+                  cn(
+                    navigationMenuTriggerStyle(),
+                    'md:text-xl text-sm',
+                    isActive ? 'bg-accent text-accent-foreground' : ''
+                  )
                 }>
                 {link.name}
               </NavLink>
@@ -39,6 +43,7 @@ const NavMenu = () => {
                 onClick={() => setCountryCode(country.code)}
                 className={cn(
                   navigationMenuTriggerStyle(),
+                  'md:text-base text-xs',
                   countryCode === country.code ? 'bg-accent text-accent-foreground' : ''
                 )}>
                 {country.name}
